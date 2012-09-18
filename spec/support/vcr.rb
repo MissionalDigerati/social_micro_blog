@@ -16,25 +16,16 @@
 #
 # @author Johnathan Pulos <johnathan@missionaldigerati.org>
 # @copyright Copyright 2012 Missional Digerati
-#
-# http://infovore.org/archives/2006/08/02/getting-a-class-object-in-ruby-from-a-string-containing-that-classes-name/
-# Initialize Class with String Kernel.const_get('Twitter')
-require_relative "../../app/services/social_media.rb"
-require_relative "../../app/services/twitter_service.rb"
-require 'yaml'
-require 'spec_helper'
+VCR.configure do |c|
+	c.cassette_library_dir = Rails.root.join("spec", "vcr")
+	c.hook_into :webmock
+end
 
-describe SocialMedia do
-	
-	before(:each) do
-		credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', 'config','services.yml')))['services']['twitter']
-		@social_media = SocialMedia.new(TwitterService.new, credentials)
-	end
-	
-	it "should return the latest tweets", :vcr do
-		tweets = @social_media.latest('jpulos', 5)
-		tweets.empty?.should be_false
-		tweets.length.should eq(5)
-	end
-	
+RSpec.configure do |c|
+	c.treat_symbols_as_metadata_keys_with_true_values = true
+  c.around(:each, :vcr) do |example|
+    name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(/[^\w\/]+/, "_")
+    options = example.metadata.slice(:record, :match_requests_on).except(:example_group)
+    VCR.use_cassette(name, options) { example.call }
+  end
 end

@@ -21,3 +21,4 @@ _new_features/
 *.swo
 /config/services.yml
 /spec/config/services.yml
+/spec/vcr/
