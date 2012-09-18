@@ -29,7 +29,7 @@ class TwitterService
 		request = RestClient.get(url)
 		results = JSON.parse(request)
 		results.each do |tweet|
-			tweets << {id: tweet['id'], content: tweet['text'], provider: 'twitter', user: account, created_at: tweet['created_at']}
+			tweets << tweet.slice("id", "text")
 		end
 	end
 
