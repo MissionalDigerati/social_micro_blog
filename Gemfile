@@ -30,4 +30,4 @@ gem 'jquery-rails'
 
 # services
 gem 'twitter'
-gem 'rest-client'
+gem 'oauth'

@@ -16,8 +16,9 @@
 #
 # @author Johnathan Pulos <johnathan@missionaldigerati.org>
 # @copyright Copyright 2012 Missional Digerati
-require 'rest_client'
+require 'oauth'
 require 'json'
+require 'active_support/core_ext/hash/slice'
 
 class TwitterService
 	
@@ -25,12 +26,32 @@ class TwitterService
 	
 	def latest(account, max)
 		tweets = Array.new
-		url = "https://api.twitter.com/1/statuses/user_timeline.json?include_entities=true&include_rts=true&screen_name=#{account}&count=#{max}"
-		request = RestClient.get(url)
-		results = JSON.parse(request)
+		access_token = get_access_token
+		puts access_token
+		response = access_token.request(:get, "http://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=#{account}&count=#{max}")
+		results = JSON.parse(response.body)
 		results.each do |tweet|
+			# tweet['text'] = pp(tweet['text'])
 			tweets << tweet.slice("id", "text")
 		end
+		tweets
+	end
+	
+	private
+		def get_access_token
+			consumer = OAuth::Consumer.new(@credentials['consumer_key'], @credentials['consumer_secret'],
+			    { :site => "http://api.twitter.com",
+			      :scheme => :header
+			    })
+			  # now create the access token object from passed values
+			  token_hash = { :oauth_token => @credentials['oauth_token'],
+			                 :oauth_token_secret => @credentials['oauth_token_secret']
+			               }
+			  access_token = OAuth::AccessToken.from_hash(consumer, token_hash)
+		end
+	
+	def pp(tweet)
+		
 	end
 
 end
