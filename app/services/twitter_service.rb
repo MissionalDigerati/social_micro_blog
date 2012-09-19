@@ -91,7 +91,7 @@ class TwitterService
 			if has_url_entities?(tweet)
 				tweet['entities']['urls'].each do |url|
 					if has_video_sevice?(url['expanded_url'])
-						videos += @video_service_format % [url['expanded_url']]
+						videos += @video_service_format % [format_video_url(url['expanded_url'])]
 					end
 				end
 			end
@@ -119,6 +119,16 @@ class TwitterService
 		#
 		def is_image?(url)
 			['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tif', '.tiff', '.xpng'].include?(File.extname(url))
+		end
+		
+		# Format vimeos url correctly
+		#
+		def format_video_url(url)
+			if url.include?('vimeo.com')
+				player_url = url.gsub!(/\/(vimeo.com)\//, "/player.vimeo.com/video/")
+			else
+				url
+			end
 		end
 		
 end

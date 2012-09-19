@@ -138,6 +138,20 @@ describe SocialMedia do
 			
 		end
 		
+		context "format_video_url" do
+			
+			it "should format the correct vimeo url" do
+				response = @twitter.send(:format_video_url, 'http://vimeo.com/46294589')
+				response.should match("http://player.vimeo.com/video/46294589")
+			end
+			
+			it "should return youtube urls untouched" do
+				response = @twitter.send(:format_video_url, 'http://youtube.com/46294589')
+				response.should match("http://youtube.com/46294589")
+			end
+			
+		end
+		
 	end
 	
 end
