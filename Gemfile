@@ -31,3 +31,4 @@ gem 'jquery-rails'
 # services
 gem 'twitter'
 gem 'oauth'
+gem "twitter-text", "~> 1.5.0"

@@ -27,14 +27,20 @@ require 'spec_helper'
 describe SocialMedia do
 	
 	before(:each) do
-		credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', 'config','services.yml')))['services']['twitter']
+		credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..', 'config','services.yml')))['services']['twitter']
 		@social_media = SocialMedia.new(TwitterService.new, credentials)
 	end
-	
+
 	it "should return the latest tweets", :vcr do
-		tweets = @social_media.latest('jpulos', 5)
-		tweets.empty?.should be_false
-		tweets.length.should eq(5)
+		@tweets = @social_media.latest('jpulos', 5)
+		@tweets.empty?.should be_false
+		@tweets.length.should eq(5)
+	end
+	
+	it "should return valid attributes", :vcr do
+		@tweets = @social_media.latest('jpulos', 5)
+		@tweets.first['id'].to_s.empty?.should be_false
+		@tweets.first['content'].to_s.empty?.should be_false
 	end
 	
 end

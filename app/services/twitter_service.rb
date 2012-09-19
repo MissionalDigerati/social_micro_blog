@@ -18,26 +18,37 @@
 # @copyright Copyright 2012 Missional Digerati
 require 'oauth'
 require 'json'
+require 'twitter-text'
 require 'active_support/core_ext/hash/slice'
 
 class TwitterService
+	include Twitter::Autolink
 	
 	attr_accessor :credentials
 	
-	def latest(account, max)
+	def setup(context)
+		@credentials = context.credentials
+		@image_format = context.image_format
+		@video_service_format = context.video_service_format
+	end
+	
+	def latest(context, account, max)
+		setup(context)
 		tweets = Array.new
 		access_token = get_access_token
-		puts access_token
 		response = access_token.request(:get, "http://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=#{account}&count=#{max}")
 		results = JSON.parse(response.body)
 		results.each do |tweet|
-			# tweet['text'] = pp(tweet['text'])
-			tweets << tweet.slice("id", "text")
+			new_tweet = {}
+			new_tweet['id'] = tweet['id']
+			new_tweet['content'] = pp(tweet)
+			tweets << new_tweet
 		end
 		tweets
 	end
 	
 	private
+		# Get an OAUTH access token
 		def get_access_token
 			consumer = OAuth::Consumer.new(@credentials['consumer_key'], @credentials['consumer_secret'],
 			    { :site => "http://api.twitter.com",
@@ -49,9 +60,64 @@ class TwitterService
 			               }
 			  access_token = OAuth::AccessToken.from_hash(consumer, token_hash)
 		end
-	
-	def pp(tweet)
 		
-	end
-
+		# Create a pretty version of the tweet
+		#
+		def pp(tweet)
+			content = tweet['text']
+			images = find_images_in_entities(tweet)
+			videos = find_video_services_in_entities(tweet)
+			videos+images+"<p>"+auto_link(content)+"</p>"
+		end
+		
+		# Find any images in the entities tag, and attach to content
+		#
+		def find_images_in_entities(tweet)
+			images = ''
+			if has_url_entities?(tweet)
+				tweet['entities']['urls'].each do |url|
+					if is_image(url['expanded_url'])
+						images += @image_format % [url['expanded_url']]
+					end
+				end
+			end
+			images
+		end
+		
+		# looks for common video services, and embeds the video
+		#
+		def find_video_services_in_entities(tweet)
+			videos = ''
+			if has_url_entities?(tweet)
+				tweet['entities']['urls'].each do |url|
+					if has_video_sevice?(url['expanded_url'])
+						videos += @video_service_format % [url['expanded_url']]
+					end
+				end
+			end
+			videos
+		end
+		
+		# does the tweet contain urls in its entities hash
+		#
+		def has_url_entities?(tweet)
+			if tweet.has_key?('entities')
+				if tweet['entities'].has_key?('urls') and !tweet['entities']['urls'].empty?
+					return true
+				end
+			end
+			return false
+		end
+		
+		# is the url an image.  Uses extension to determine this
+		#
+		def is_image(url)
+			['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tif', '.tiff', '.xpng'].include?(File.extname(url))
+		end
+		
+		# is the url a popular video service
+		#
+		def has_video_sevice?(url)
+			url.include?('youtube.com') or url.include?('vimeo.com')
+		end
 end

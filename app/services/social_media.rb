@@ -18,16 +18,17 @@
 # @copyright Copyright 2012 Missional Digerati
 class SocialMedia
 	attr_reader :credentials, :max
-	attr_accessor :provider
+	attr_accessor :provider, :image_format, :video_service_format
 	
 	def initialize(provider, credentials)
 		@provider = provider
 		@credentials = credentials
+		@image_format = "<img src='%s' alt='Social Media Image'><br>"
+		@video_service_format = "<iframe src='%s' frameborder='0' allowfullscreen></iframe><br>"
 	end
 	
 	def latest(account, max = 20)
-		provider.credentials = @credentials
-		provider.latest(account, max)
+		provider.latest(self, account, max)
 	end
 	
 end

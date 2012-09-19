@@ -20,6 +20,13 @@ require_relative "../../app/services/social_media.rb"
 require_relative "../../app/services/twitter_service.rb"
 require 'yaml'
 
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = File.join(File.dirname(__FILE__), 'vcr', 'rake_task')
+  c.hook_into :webmock # or :fakeweb
+end
+
 settings = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..','config','services.yml')))
 accounts = settings['accounts']
 twitter_credentials = settings['services']['twitter']
@@ -27,9 +34,10 @@ namespace :social_media do
 
 	desc "Update all existing social media in the database"
 	task :update do
-		WebMock.disable_net_connect!(:allow => "api.twitter.com")
-		twitter = SocialMedia.new(TwitterService.new, twitter_credentials)
-		puts twitter.latest('jpulos', 100)
+		VCR.use_cassette('update') do
+			twitter = SocialMedia.new(TwitterService.new, twitter_credentials)
+			puts twitter.latest('jpulos', 10)
+		end
 	end
 	
 end
