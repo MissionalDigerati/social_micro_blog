@@ -23,7 +23,7 @@ require 'active_support/core_ext/hash/slice'
 
 class TwitterService
 	include Twitter::Autolink
-	
+	attr_reader :image_format, :video_service_format
 	attr_accessor :credentials
 	
 	def setup(context)
