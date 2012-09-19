@@ -28,7 +28,8 @@ class SocialMedia
 	end
 	
 	def latest(account, max = 20)
-		provider.latest(self, account, max)
+		provider.setup(self)
+		provider.latest(account, max)
 	end
 	
 end

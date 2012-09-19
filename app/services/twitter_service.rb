@@ -32,8 +32,7 @@ class TwitterService
 		@video_service_format = context.video_service_format
 	end
 	
-	def latest(context, account, max)
-		setup(context)
+	def latest(account, max)
 		tweets = Array.new
 		access_token = get_access_token
 		response = access_token.request(:get, "http://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=#{account}&count=#{max}")

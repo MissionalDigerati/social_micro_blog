@@ -30,31 +30,34 @@ describe SocialMedia do
 		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..', 'config','services.yml')))['services']['twitter']
 		@twitter = TwitterService.new
 		@social_media = SocialMedia.new(@twitter, @credentials)
+		@twitter.setup(@social_media)
 	end
 	
 	context "setup" do
 		
 		it "should set the credentials attribute", :vcr do
-			tweets = @twitter.latest(@social_media, 'jpulos', 1)
+			tweets = @twitter.latest('jpulos', 1)
 			@twitter.credentials.should eq(@credentials)
 		end
 		
 		it "should set the image_format from SocialMedia Class", :vcr do
 			@social_media.image_format = "<img src='test.html'/>"
-			tweets = @twitter.latest(@social_media, 'jpulos', 1)
+			@twitter.setup(@social_media)
+			tweets = @twitter.latest('jpulos', 1)
 			@twitter.image_format.should eq("<img src='test.html'/>")
 		end
 		
 		it "should set the video_service_format from SocialMedia Class", :vcr do
 			@social_media.video_service_format = "<video url='test.html'/>"
-			tweets = @twitter.latest(@social_media, 'jpulos', 1)
+			@twitter.setup(@social_media)
+			tweets = @twitter.latest('jpulos', 1)
 			@twitter.video_service_format.should eq("<video url='test.html'/>")
 		end
 		
 	end
 	
 	it "should get the latest tweets", :vcr do
-		tweets = @twitter.latest(@social_media, 'jpulos', 10)
+		tweets = @twitter.latest('jpulos', 10)
 		tweets.length.should eq(10)
 	end
 	
@@ -63,12 +66,12 @@ describe SocialMedia do
 		context "#has_url_entities?" do
 			
 			it "should return true" do
-				response = @twitter.send(:has_url_entities?, {'entities' => {'urls' => {'expanded_url' => 'http://www.test.com'}}})
+				response = @twitter.send(:has_url_entities?, {'entities' => {'urls' => [{'expanded_url' => 'http://www.test.com'}]}})
 				response.should be_true
 			end
 			
 			it "should return false if urls empty" do
-				response = @twitter.send(:has_url_entities?, {'entities' => {'urls' => {}}})
+				response = @twitter.send(:has_url_entities?, {'entities' => {'urls' => []}})
 				response.should be_false
 			end
 			
@@ -104,6 +107,21 @@ describe SocialMedia do
 			it "should return false if not an image" do
 				response = @twitter.send(:is_image?, 'http://www.vimeo.com/special.html').should be_false
 			end
+			
+		end
+		
+		context "find_images_in_entities" do
+			
+			it "should return images in entities" do
+				response = @twitter.send(:find_images_in_entities, {'entities' => {'urls' => [{'expanded_url' => 'http://www.test.com/image.jpg'}]}})
+				response.should match("http://www.test.com/image.jpg")
+			end
+			
+			it "should return nothing, if images do not exist in entities" do
+				response = @twitter.send(:find_images_in_entities, {'entities' => {'urls' => [{'expanded_url' => 'http://www.test.com/image.html'}]}})
+				response.empty?.should be_true
+			end
+			
 		end
 		
 	end
