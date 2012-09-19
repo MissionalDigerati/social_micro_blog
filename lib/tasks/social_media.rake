@@ -16,7 +16,7 @@
 #
 # @author Johnathan Pulos <johnathan@missionaldigerati.org>
 # @copyright Copyright 2012 Missional Digerati
-require_relative "../../app/services/social_media.rb"
+require_relative "../../app/services/social_media_service.rb"
 require_relative "../../app/services/twitter_service.rb"
 require 'yaml'
 
@@ -29,14 +29,17 @@ end
 
 settings = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..','config','services.yml')))
 accounts = settings['accounts']
-twitter_credentials = settings['services']['twitter']
 namespace :social_media do
 
 	desc "Update all existing social media in the database"
-	task :update do
-		VCR.use_cassette('update') do
-			twitter = SocialMedia.new(TwitterService.new, twitter_credentials)
-			puts twitter.latest('jpulos', 10)
+	task :update => [:environment] do
+		accounts.each do |key, val|
+			VCR.use_cassette("update_#{val['username'].downcase}") do
+				# http://infovore.org/archives/2006/08/02/getting-a-class-object-in-ruby-from-a-string-containing-that-classes-name/
+				# Initialize Class with String Kernel.const_get('Twitter')
+				social_media = SocialMediaService.new(Kernel.const_get("#{val['provider'].titlecase}Service").new, settings['services'][val['provider']])
+				posts = social_media.latest(val['username'], 100)
+			end
 		end
 	end
 	

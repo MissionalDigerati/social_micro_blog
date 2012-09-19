@@ -19,7 +19,7 @@
 #
 # http://infovore.org/archives/2006/08/02/getting-a-class-object-in-ruby-from-a-string-containing-that-classes-name/
 # Initialize Class with String Kernel.const_get('Twitter')
-require_relative "../../app/services/social_media.rb"
+require_relative "../../app/services/social_media_service.rb"
 require_relative "../../app/services/twitter_service.rb"
 require 'yaml'
 require 'spec_helper'
@@ -29,7 +29,7 @@ describe SocialMedia do
 	before(:each) do
 		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..', 'config','services.yml')))['services']['twitter']
 		@twitter = TwitterService.new
-		@social_media = SocialMedia.new(@twitter, @credentials)
+		@social_media = SocialMediaService.new(@twitter, @credentials)
 		@twitter.setup(@social_media)
 	end
 	
