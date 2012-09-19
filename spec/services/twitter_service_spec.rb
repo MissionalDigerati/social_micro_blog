@@ -124,6 +124,20 @@ describe SocialMedia do
 			
 		end
 		
+		context "find_video_services_in_entities" do
+			
+			it "should return video services in entities" do
+				response = @twitter.send(:find_video_services_in_entities, {'entities' => {'urls' => [{'expanded_url' => 'http://www.youtube.com/122wqqwwaaqq'}]}})
+				response.should match("http://www.youtube.com/122wqqwwaaqq")
+			end
+			
+			it "should return nothing, if a video service does not exist in entities" do
+				response = @twitter.send(:find_video_services_in_entities, {'entities' => {'urls' => [{'expanded_url' => 'http://www.test.com/image.html'}]}})
+				response.empty?.should be_true
+			end
+			
+		end
+		
 	end
 	
 end
