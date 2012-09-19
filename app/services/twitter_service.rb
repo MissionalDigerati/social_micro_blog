@@ -109,15 +109,16 @@ class TwitterService
 			return false
 		end
 		
+		# is the url a popular video service
+		#
+		def has_video_sevice?(url)
+			url.include?('youtube.com') or url.include?('vimeo.com')
+		end
+		
 		# is the url an image.  Uses extension to determine this
 		#
 		def is_image(url)
 			['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tif', '.tiff', '.xpng'].include?(File.extname(url))
 		end
 		
-		# is the url a popular video service
-		#
-		def has_video_sevice?(url)
-			url.include?('youtube.com') or url.include?('vimeo.com')
-		end
 end

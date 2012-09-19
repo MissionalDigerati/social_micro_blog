@@ -79,6 +79,22 @@ describe SocialMedia do
 			
 		end
 		
+		context "has_video_sevice?" do
+			
+			it "returns true for youtube urls" do
+				response = @twitter.send(:has_video_sevice?, 'http://www.youtube.com/nggk112').should be_true
+			end
+			
+			it "returns true for vimeo urls" do
+				response = @twitter.send(:has_video_sevice?, 'http://www.vimeo.com/nggk112').should be_true
+			end
+			
+			it "returns false for non video services" do
+				response = @twitter.send(:has_video_sevice?, 'http://www.yahoo.com/nggk112').should be_false
+			end
+			
+		end
+		
 	end
 	
 end
