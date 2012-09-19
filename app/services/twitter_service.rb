@@ -41,6 +41,7 @@ class TwitterService
 			new_tweet = {}
 			new_tweet['id'] = tweet['id']
 			new_tweet['content'] = pp(tweet)
+			new_tweet['created'] = tweet['created_at']
 			tweets << new_tweet
 		end
 		tweets
