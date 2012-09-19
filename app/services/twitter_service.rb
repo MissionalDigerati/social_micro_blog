@@ -76,7 +76,7 @@ class TwitterService
 			images = ''
 			if has_url_entities?(tweet)
 				tweet['entities']['urls'].each do |url|
-					if is_image(url['expanded_url'])
+					if is_image?(url['expanded_url'])
 						images += @image_format % [url['expanded_url']]
 					end
 				end
@@ -117,7 +117,7 @@ class TwitterService
 		
 		# is the url an image.  Uses extension to determine this
 		#
-		def is_image(url)
+		def is_image?(url)
 			['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tif', '.tiff', '.xpng'].include?(File.extname(url))
 		end
 		

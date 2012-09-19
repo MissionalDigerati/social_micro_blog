@@ -95,6 +95,17 @@ describe SocialMedia do
 			
 		end
 		
+		context "is_image?" do
+			
+			it "should return true on an image" do
+				response = @twitter.send(:is_image?, 'http://www.vimeo.com/special.png').should be_true
+			end
+			
+			it "should return false if not an image" do
+				response = @twitter.send(:is_image?, 'http://www.vimeo.com/special.html').should be_false
+			end
+		end
+		
 	end
 	
 end
