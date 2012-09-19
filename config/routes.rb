@@ -1,4 +1,7 @@
 SocialBlog::Application.routes.draw do
+	root :to => "social_media#index"
+  get "social_media/index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
