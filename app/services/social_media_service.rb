@@ -24,7 +24,7 @@ class SocialMediaService
 		@provider = provider
 		@credentials = credentials
 		@image_format = "<img src='%s' alt='Social Media Image'><br>"
-		@video_service_format = "<iframe src='%s' frameborder='0' allowfullscreen></iframe><br>"
+		@video_service_format = "<iframe src='%s' frameborder='0' allowfullscreen webkitAllowFullScreen mozallowfullscreen></iframe><br>"
 	end
 	
 	def latest(account, max = 20)
