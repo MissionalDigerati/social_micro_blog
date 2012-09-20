@@ -40,13 +40,13 @@ namespace :social_media do
 				social_media = SocialMediaService.new(Kernel.const_get("#{val['provider'].titlecase}Service").new, settings['services'][val['provider']])
 				posts = social_media.latest(val['username'], 100)
 				posts.each do |post|
-					@new_social_media = SocialMedia.create({ 	provider: val['provider'].downcase,
+					new_social_media = SocialMedia.new({ 	provider: val['provider'].downcase,
 																										account: val['username'],
 																										provider_id: post['id'], 
 																										content: post['content'], 
 																										provider_created_datetime: post['created']
 																									})
-					@new_social_media.save
+					new_social_media.save unless new_social_media.post_exists?
 				end
 			end
 		end
