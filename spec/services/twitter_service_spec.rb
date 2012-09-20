@@ -85,7 +85,11 @@ describe SocialMedia do
 		context "has_video_sevice?" do
 			
 			it "returns true for youtube urls" do
-				response = @twitter.send(:has_video_sevice?, 'http://www.youtube.com/nggk112').should be_true
+				response = @twitter.send(:has_video_sevice?, 'http://www.youtube.com/watch?v=yv0zA9kN6L8&feature=g-logo-xit').should be_true
+			end
+			
+			it "returns false for youtube urls without an id" do
+				response = @twitter.send(:has_video_sevice?, 'http://www.youtube.com/watch?feature=g-logo-xit').should be_false
 			end
 			
 			it "returns true for vimeo urls" do
@@ -127,8 +131,8 @@ describe SocialMedia do
 		context "find_video_services_in_entities" do
 			
 			it "should return video services in entities" do
-				response = @twitter.send(:find_video_services_in_entities, {'entities' => {'urls' => [{'expanded_url' => 'http://www.youtube.com/122wqqwwaaqq'}]}})
-				response.should match("http://www.youtube.com/122wqqwwaaqq")
+				response = @twitter.send(:find_video_services_in_entities, {'entities' => {'urls' => [{'expanded_url' => 'http://www.youtube.com/watch?v=yv0zA9kN6L8&feature=g-logo-xit'}]}})
+				response.should match("http://www.youtube.com/embed/yv0zA9kN6L8")
 			end
 			
 			it "should return nothing, if a video service does not exist in entities" do
@@ -143,11 +147,15 @@ describe SocialMedia do
 			it "should format the correct vimeo url" do
 				response = @twitter.send(:format_video_url, 'http://vimeo.com/46294589')
 				response.should match("http://player.vimeo.com/video/46294589")
+				response = @twitter.send(:format_video_url, 'http://www.vimeo.com/46294589')
+				response.should match("http://player.vimeo.com/video/46294589")
 			end
 			
-			it "should return youtube urls untouched" do
-				response = @twitter.send(:format_video_url, 'http://youtube.com/46294589')
-				response.should match("http://youtube.com/46294589")
+			it "should return the correct youtube url" do
+				response = @twitter.send(:format_video_url, 'http://www.youtube.com/watch?v=yv0zA9kN6L8&feature=g-logo-xit')
+				response.should match("http://www.youtube.com/embed/yv0zA9kN6L8")
+				response = @twitter.send(:format_video_url, 'http://www.youtube.com/watch?v=yv0zA9kN6L8&feature=g-logo-xit')
+				response.should match("http://www.youtube.com/embed/yv0zA9kN6L8")
 			end
 			
 		end

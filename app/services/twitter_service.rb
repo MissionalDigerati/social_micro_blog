@@ -112,7 +112,14 @@ class TwitterService
 		# is the url a popular video service
 		#
 		def has_video_sevice?(url)
-			url.include?('youtube.com') or url.include?('vimeo.com')
+			if url.include?('youtube.com')
+				id = url.match(/v=([\w\-]*)&/i)
+				return id.nil? ? false : true
+			elsif url.include?('vimeo.com')
+				true
+			else
+				false
+			end
 		end
 		
 		# is the url an image.  Uses extension to determine this
@@ -125,9 +132,10 @@ class TwitterService
 		#
 		def format_video_url(url)
 			if url.include?('vimeo.com')
-				player_url = url.gsub!(/\/(vimeo.com)\//, "/player.vimeo.com/video/")
-			else
-				url
+				player_url = url.gsub!(/\/w*\.*vimeo.com\//, "/player.vimeo.com/video/")
+			elsif url.include?('youtube.com')
+				id = url.match(/v=([\w\-]*)&/i)
+				player_url = "http://www.youtube.com/embed/#{id[1]}"
 			end
 		end
 		
