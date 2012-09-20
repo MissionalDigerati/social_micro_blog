@@ -1,3 +1,6 @@
 <% @social_media.each do |post| %>
-  <div class="post-box"><%= post.content.html_safe %></div>
+  <div class="post-box resizable-video">
+    <div class="date-box"><%= post.creation_date %></div>
+    <%= post.content.html_safe %>
+  </div>
 <% end %>

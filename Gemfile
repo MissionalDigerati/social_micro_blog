@@ -25,6 +25,7 @@ group :test, :development do
 	gem "vcr"
 	gem "webmock"
 	gem 'factory_girl_rails'
+	gem "twitter-bootstrap-rails"
 end
 
 gem 'jquery-rails'
@@ -33,4 +34,3 @@ gem 'jquery-rails'
 gem 'twitter'
 gem 'oauth'
 gem "twitter-text", "~> 1.5.0"
-gem "twitter-bootstrap-rails"
