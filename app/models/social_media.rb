@@ -8,7 +8,7 @@ class SocialMedia < ActiveRecord::Base
 	end
 	
 	def creation_date
-		self.provider_created_datetime.strftime("%e %B %Y")
+		self.provider_created_datetime.strftime("%l:%M %p - %e %B %Y")
 	end
 
 end
