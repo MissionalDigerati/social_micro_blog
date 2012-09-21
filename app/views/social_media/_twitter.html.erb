@@ -2,6 +2,7 @@
 	<div class="profile-box">
 		<%= link_to image_tag("https://api.twitter.com/1/users/profile_image/#{post.account}", class: 'profile-img'), "https://twitter.com/#{post.account}", target: "_blank" %>
 		<div class="details">
+			<%= link_to "#{@accounts[post.account]['name']}", "https://twitter.com/#{post.account}", target: "_blank", class: 'profile-name' %><br>
 			<%= link_to "@#{post.account}", "https://twitter.com/#{post.account}", target: "_blank" %>
 		</div>
 		<div class="clearfix"></div>

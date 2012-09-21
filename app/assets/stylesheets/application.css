@@ -12,3 +12,6 @@
  *= require_self
  *= require_tree .
  */
+.sidebar-nav {
+	margin-top: 15px;
+}

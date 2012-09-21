@@ -1,0 +1,15 @@
+services:
+  twitter:
+    consumer_key: 
+    consumer_secret: 
+    oauth_token: 
+    oauth_token_secret: 
+accounts:
+  jpulos:
+    provider: twitter
+    username: jpulos
+    name: Johnathan Pulos
+  M_Digerati:
+    provider: twitter
+    username: M_Digerati
+    name: Missional Digerati
