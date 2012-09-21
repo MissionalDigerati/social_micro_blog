@@ -16,6 +16,7 @@
 //= require_tree .
 jQuery(document).ready(function($) {
 	$( ".draggable" ).draggable();
+	$("body").iealert({support: "ie7"});
 	if($('div.resizable-video').length > 0) {
 		/**
 		 * Resize the videos anytime they resize the page 
