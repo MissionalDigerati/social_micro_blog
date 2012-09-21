@@ -20,13 +20,6 @@ require_relative "../../app/services/social_media_service.rb"
 require_relative "../../app/services/twitter_service.rb"
 require 'yaml'
 
-require 'vcr'
-
-VCR.configure do |c|
-  c.cassette_library_dir = File.join(File.dirname(__FILE__), 'vcr', 'rake_task')
-  c.hook_into :webmock # or :fakeweb
-end
-
 settings = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..','config','services.yml')))
 accounts = settings['accounts']
 namespace :social_media do
@@ -34,20 +27,18 @@ namespace :social_media do
 	desc "Update all existing social media in the database"
 	task :update => [:environment] do
 		accounts.each do |key, val|
-			VCR.use_cassette("update_#{val['username'].downcase}") do
-				# http://infovore.org/archives/2006/08/02/getting-a-class-object-in-ruby-from-a-string-containing-that-classes-name/
-				# Initialize Class with String Kernel.const_get('Twitter')
-				social_media = SocialMediaService.new(Kernel.const_get("#{val['provider'].titlecase}Service").new, settings['services'][val['provider']])
-				posts = social_media.latest(val['username'], val['pull_total'])
-				posts.each do |post|
-					new_social_media = SocialMedia.new({ 	provider: val['provider'].downcase,
-																										account: val['username'],
-																										provider_id: post['id'], 
-																										content: post['content'], 
-																										provider_created_datetime: post['created']
-																									})
-					new_social_media.save unless new_social_media.post_exists?
-				end
+			# http://infovore.org/archives/2006/08/02/getting-a-class-object-in-ruby-from-a-string-containing-that-classes-name/
+			# Initialize Class with String Kernel.const_get('Twitter')
+			social_media = SocialMediaService.new(Kernel.const_get("#{val['provider'].titlecase}Service").new, settings['services'][val['provider']])
+			posts = social_media.latest(val['username'], val['pull_total'])
+			posts.each do |post|
+				new_social_media = SocialMedia.new({ 	provider: val['provider'].downcase,
+																									account: val['username'],
+																									provider_id: post['id'], 
+																									content: post['content'], 
+																									provider_created_datetime: post['created']
+																								})
+				new_social_media.save unless new_social_media.post_exists?
 			end
 		end
 	end
