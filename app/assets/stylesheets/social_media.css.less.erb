@@ -1,0 +1,88 @@
+// Core variables and mixins
+@import "twitter/bootstrap/bootstrap";
+.post-box {
+	position: relative;
+	margin: 15px 0;
+	padding: 14px 19px 39px;
+	background-color: white;
+	border: 1px solid #DDD;
+	.border-radius(5px);
+	border-image: initial;
+}
+.post-box .date-box {
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  padding: 3px 7px;
+  font-size: 12px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  color: #9da0a4;
+	.border-bottom-left-radius(4px);
+}
+.post-box .twitter-action-box {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  padding: 3px 7px;
+  font-size: 10px;
+  font-weight: bold;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+	.border-bottom-right-radius(4px);
+}
+.post-box .profile-box {
+	margin-bottom: 5px;
+	
+	img.profile-img {
+		float: left;
+		margin-right: 5px;
+	}
+	
+	.details {
+		float: left;
+		clear: right;
+	}
+}
+/*Twitter Actions*/
+.twitter-action-box a {
+	color: #b2b2b2;
+	margin-top: 1px;
+	
+	&:hover {
+		color: #666666; 
+	}
+}
+[class^="socialicon-twit-"],
+[class*=" socialicon-twit-"] {
+	display: inline-block;
+  width: 16px;
+  height: 16px;
+  .ie7-restore-right-whitespace();
+  line-height: 16px;
+  vertical-align: top;
+  background-image: url(<%=asset_path "twitter/everything-sprite.png"%>);
+  background-repeat: no-repeat;
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+.socialicon-twit-reply{
+	background-position: 0px 0px;
+	
+	&:hover{ background-position: -16px 0px;}
+}
+
+.socialicon-twit-retweet{
+	background-position: -32px 0px;
+	
+	&:hover{ background-position: -48px 0px;}
+}
+
+.socialicon-twit-fav{
+	background-position: -80px 0px;
+	
+	&:hover{ background-position: -96px 0px;}
+}

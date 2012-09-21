@@ -1,0 +1,14 @@
+<div class="post-box resizable-video">
+	<div class="profile-box">
+		<%= link_to image_tag("https://api.twitter.com/1/users/profile_image/#{post.account}", class: 'profile-img'), "https://twitter.com/#{post.account}", target: "_blank" %>
+		<div class="details">
+			<%= link_to "@#{post.account}", "https://twitter.com/#{post.account}", target: "_blank" %>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+  <%= post.content.html_safe %>
+  <div class="date-box"><%= post.creation_date %></div>
+  <div class="twitter-action-box">
+    <a><i class="socialicon-twit-reply" title="reply"></i> Reply</a> <a><i class="socialicon-twit-retweet" title="retweet"></i> Retweet</a> <a><i class="socialicon-twit-fav" title="favorite"></i> Favorite</a>
+  </div>
+</div>
