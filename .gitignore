@@ -19,3 +19,7 @@
 _new_features/
 *.swp
 *.swo
+/config/services.yml
+/spec/config/services.yml
+/spec/vcr/
+/lib/tasks/vcr/

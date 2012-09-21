@@ -8,6 +8,33 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap_and_overrides
  *= require_self
  *= require_tree .
  */
+.sidebar-nav {
+	margin-top: 15px;
+}
+/* Pagination */
+.span9 .pagination a, .span9 .pagination span {
+	padding: 8px;
+	line-height: 14px;
+	height: 16px;
+}
+.span9 .pagination a {
+	border: none;
+	padding: 0px;
+}
+
+.span9 .pagination a:hover, .span9 .pagination span:hover {
+	background-color: whiteSmoke;
+}
+.span9 .pagination span:first-child {
+	border-left: 1px solid #DDD;
+}
+.span9 .pagination span.current {
+	background-color: whiteSmoke;
+}
+.span9 .pagination {
+	margin: 0px;
+}
