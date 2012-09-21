@@ -1,3 +1,6 @@
 <% @social_media.each do |post| %>
   <%= render :partial => "#{post.provider.downcase}", :locals => {:post => post} %>
 <% end %>
+<%= content_for :additional_js do %>
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<% end %>
