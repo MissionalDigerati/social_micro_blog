@@ -135,7 +135,7 @@ class TwitterService
 				player_url = url.gsub!(/\/w*\.*vimeo.com\//, "/player.vimeo.com/video/")
 			elsif url.include?('youtube.com')
 				id = url.match(/v=([\w\-]*)&/i)
-				player_url = "http://www.youtube.com/embed/#{id[1]}"
+				player_url = "http://www.youtube.com/embed/#{id[1]}?wmode=transparent"
 			end
 		end
 		

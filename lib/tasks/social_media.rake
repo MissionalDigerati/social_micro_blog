@@ -38,7 +38,7 @@ namespace :social_media do
 				# http://infovore.org/archives/2006/08/02/getting-a-class-object-in-ruby-from-a-string-containing-that-classes-name/
 				# Initialize Class with String Kernel.const_get('Twitter')
 				social_media = SocialMediaService.new(Kernel.const_get("#{val['provider'].titlecase}Service").new, settings['services'][val['provider']])
-				posts = social_media.latest(val['username'], 100)
+				posts = social_media.latest(val['username'], val['pull_total'])
 				posts.each do |post|
 					new_social_media = SocialMedia.new({ 	provider: val['provider'].downcase,
 																										account: val['username'],

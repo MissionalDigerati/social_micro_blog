@@ -9,7 +9,9 @@ accounts:
     provider: twitter
     username: jpulos
     name: Johnathan Pulos
+    pull_total: 20
   M_Digerati:
     provider: twitter
     username: M_Digerati
     name: Missional Digerati
+    pull_total: 10
