@@ -11,7 +11,7 @@ Current Social Network Support
 Setup
 -----
 
-You will first need to add your credentials to the `config/services.yml` file.
+First rename `config/services.sample.yml` to `config/services.yml`.  Then add your credentials to the `config/services.yml` file.
 ```
 services:
   twitter:
