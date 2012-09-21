@@ -23,6 +23,6 @@ class SocialMediaController < ApplicationController
 	def index
 		settings = YAML::load(File.open(File.join(Rails.root,'config','services.yml')))
 		@accounts = settings['accounts'] 
-		@social_media = SocialMedia.find(:all, :order => "provider_created_datetime desc")
+		@social_media = SocialMedia.order("provider_created_datetime desc").page(params[:page]).per(20)
   end
 end

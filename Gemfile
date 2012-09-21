@@ -20,12 +20,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :test, :development do
-  gem "rspec-rails", "~> 2.0"
+group :test do
+	gem "vcr"
+	gem "webmock"
+	gem "rspec-rails", "~> 2.0"
 	gem "vcr"
 	gem "webmock"
 	gem 'factory_girl_rails'
-	gem "twitter-bootstrap-rails"
 end
 
 gem 'jquery-rails'
@@ -34,3 +35,5 @@ gem 'jquery-rails'
 gem 'twitter'
 gem 'oauth'
 gem "twitter-text", "~> 1.5.0"
+gem 'kaminari'
+gem "twitter-bootstrap-rails"
