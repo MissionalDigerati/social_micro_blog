@@ -12,29 +12,44 @@
  *= require_self
  *= require_tree .
  */
+#site-area {
+	background-color: #ffffff;
+}
+.sidebar {
+	text-align: center;
+}
+.blog-posts {
+	padding: 20px 0px;
+}
 .sidebar-nav {
 	margin-top: 15px;
 }
 /* Pagination */
-.span9 .pagination a, .span9 .pagination span {
+.blog-posts .pagination{
+	float: right;
+}
+.blog-posts .pagination a, .blog-posts .pagination span {
 	padding: 8px;
 	line-height: 14px;
 	height: 16px;
 }
-.span9 .pagination a {
+.blog-posts .pagination a {
 	border: none;
 	padding: 0px;
 }
 
-.span9 .pagination a:hover, .span9 .pagination span:hover {
+.blog-posts .pagination a:hover, .blog-posts .pagination span:hover {
 	background-color: whiteSmoke;
 }
-.span9 .pagination span:first-child {
+.blog-posts .pagination span:first-child {
 	border-left: 1px solid #DDD;
 }
-.span9 .pagination span.current {
+.blog-posts .pagination span.current {
 	background-color: whiteSmoke;
 }
-.span9 .pagination {
+.blog-posts .pagination {
 	margin: 0px;
+}
+.gamepiece {
+	height: 200px;
 }
