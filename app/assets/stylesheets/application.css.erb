@@ -15,8 +15,28 @@
 #site-area {
 	background-color: #ffffff;
 }
+#repeatable_layer {
+	background: url(<%=asset_path "on_the_same_path/repeatable_path.png"%>) repeat-y;
+	background-position: 19px;
+}
 .sidebar {
+	position: relative;
 	text-align: center;
+}
+#start_path {
+	background: url(<%=asset_path "on_the_same_path/start_path.png"%>) no-repeat;
+	background-color: #CDDFF3;
+	height: 1179px;
+	position: absolute;
+	width: 220px;
+	z-index: 1;
+}
+#footer {
+	background: url(<%=asset_path "on_the_same_path/footer.png"%>) no-repeat;
+	height: 352px;
+	position: relative;
+	width: 100%;
+	z-index: 1;
 }
 .blog-posts {
 	padding: 20px 0px;
@@ -52,4 +72,5 @@
 }
 .gamepiece {
 	height: 200px;
+	z-index: 4;
 }

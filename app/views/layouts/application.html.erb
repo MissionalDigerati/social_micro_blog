@@ -58,10 +58,13 @@
 
     <div class="container">
       <div class="content">
-        <div class="row">
+        <div class="row" id="repeatable_layer">
 					<div class="span3 sidebar">
-						<%= image_tag "on_the_same_path/johnathan_gamepiece.png", class: "gamepiece johnathan" %>
-						<%= image_tag "on_the_same_path/candice_gamepiece.png", class: "gamepiece candice" %>
+						<div id="start_path">&nbsp;</div>
+						<%= image_tag "on_the_same_path/johnathan_gamepiece.png", class: "gamepiece johnathan draggable", title: "Drag Me" %>
+						<%= image_tag "on_the_same_path/candice_gamepiece.png", class: "gamepiece candice draggable", title: "Drag Me" %>
+						&nbsp;
+						<div class="clearfix"></div>
 					</div><!--/span-->
 					<div class="span9" id="site-area">
 	          <div class="span8 blog-posts"><%= yield %></div>
@@ -70,8 +73,8 @@
         </div><!--/row-->
       </div><!--/content-->
 
-      <footer>
-      </footer>
+      <div id="footer">
+      </div>
 
     </div> <!-- /container -->
 

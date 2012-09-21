@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require_tree .
 jQuery(document).ready(function($) {
+	$( ".draggable" ).draggable();
 	if($('div.resizable-video').length > 0) {
 		/**
 		 * Resize the videos anytime they resize the page 
