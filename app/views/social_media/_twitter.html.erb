@@ -1,5 +1,5 @@
 <div class="post-box resizable-video">
-<div class="powered-by-box"><%= image_tag "twitter/bird_blue_16.png" %> Powered by Twitter</div>
+<div class="powered-by-box"><%= image_tag "twitter/bird_blue_16.png" %> Twitter</div>
 	<div class="profile-box">
 		<%= link_to image_tag("https://api.twitter.com/1/users/profile_image/#{post.account}", class: 'profile-img'), "https://twitter.com/#{post.account}", target: "_blank" %>
 		<div class="details">
@@ -9,7 +9,8 @@
 		<div class="clearfix"></div>
 	</div>
   <%= post.content.html_safe %>
-  <div class="date-box"><%= post.creation_date %></div>
+  <div class="date-box hidden-phone"><%= post.creation_date %></div>
+	<div class="date-mobile-box visible-phone"><em><%= post.creation_date %></em></div>
   <div class="twitter-action-box">
     <a href="https://twitter.com/intent/tweet?in_reply_to=<%= post.provider_id %>"><i class="socialicon-twit-reply" title="reply"></i></a> 
 		<a href="https://twitter.com/intent/retweet?tweet_id=<%= post.provider_id %>"><i class="socialicon-twit-retweet" title="retweet"></i></a> 
