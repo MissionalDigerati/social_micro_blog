@@ -1,36 +1,58 @@
 /*Mobile Phone Specifics*/
 // Core variables and mixins
-@import "twitter/bootstrap/bootstrap";
+@import "twitter/bootstrap/variables.less"; // Modify this for custom colors, font-sizes, etc
+@import "twitter/bootstrap/mixins.less";
 /* Portrait*/
-@media (max-width: 350px) {
+@media (max-width: 480px) {
 	
 	body {
-		padding: 25px;
+		padding: 0px;
+		margin: 0;
 	}
 	
 	a.brand {
 		font-size: 16px !important;
 	}
 	
+	div#site_wrapper {
+		width: 96%;
+		margin: 0 2%;
+		padding: 0;
+	}
+	
 	#repeatable_layer {
 		background-image: none;
 		background-position: 0px;
-		
-		.row {
-			margin-left: 0px;
-		}
+		margin: 0;
+		padding: 0;
+		width: 100%;
 
 		.span9 {
-			width: 310px;
-			margin: 0px 5px;
+			width: 100%;
+			margin: 0;
 		}
 
 		.span8 {
-			width: 300px;
+			width: 94%;
+			padding: 0;
+			margin: 0 2% 0 3%;
 		}
 
 		.span1 {
-			width: 10px;
+			width: 1%;
+			padding: 0;
+			margin: 0;
+		}
+		
+		.post-box {
+			position: relative;
+			width: 94%;
+			margin: 3% 0 !important;
+			padding: 2% !important;
+			background-color: white;
+			border: 1% solid #DDD;
+			.border-radius(5px);
+			border-image: initial;
 		}
 		
 		.blog-posts .pagination{
@@ -39,72 +61,19 @@
 		}
 		
 	}
-	
-	.post-box {
-		position: relative;
-		margin: 5px 0;
-		padding: 2px;
-		background-color: white;
-		border: 1px solid #DDD;
-		.border-radius(5px);
-		border-image: initial;
-		width: 80%;
-	}
 
-	.navbar .brand {
-		margin-left: 2px !important;
-	}
-}
-@media  (min-width: 351px) and (max-width: 480px) {
-	
-	body {
-		padding: 25px;
-	}
-	
-	#repeatable_layer {
-		background-image: none;
-		background-position: 0px;
+	.navbar {
 		
-		.row {
-			margin-left: 0px;
-		}
-
-		.span9 {
-			width: 470px;
-			margin: 0px 5px;
-		}
-
-		.span8 {
-			width: 460px;
-		}
-
-		.span1 {
-			width: 10px;
+		.brand {
+			margin: 0px!important;
 		}
 		
-		.blog-posts .pagination{
-			float: none;
-			text-align: center;
+		.navbar-inner {
+			
+			.container {
+				width: 96% !important;
+				padding: 0% 2% !important;
+			}
 		}
-		
-	}
-	
-	.post-box {
-		position: relative;
-		margin: 5px 0;
-		padding: 2px;
-		background-color: white;
-		border: 1px solid #DDD;
-		.border-radius(5px);
-		border-image: initial;
-		width: 80%;
-	}
-
-	.navbar .brand {
-		margin-left: 2px !important;
-	}
-	
-	a.brand {
-		font-size: 16px !important;
 	}
 }

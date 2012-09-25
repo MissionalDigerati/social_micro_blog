@@ -39,11 +39,11 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar visible-phone" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
+					<a class="btn btn-navbar nav-display-button" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+          	<span class="icon-bar"></span>
+          	<span class="icon-bar"></span>
+					</a>
           <a class="brand" href="#">OnTheSamePath.com</a>
           <div class="container nav-collapse">
             <ul class="nav">
@@ -51,31 +51,31 @@
 							<li><%= link_to "About Us", root_path  %></li>
 							<li><%= link_to "Learn More", root_path  %></li>
             </ul>
+						<div class="clearfix"></div>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="site_wrapper">
       <div class="content">
-        <div class="row" id="repeatable_layer">
-					<div class="span3 sidebar hidden-phone">
-						<div id="start_path">&nbsp;</div>
-						<%= image_tag "on_the_same_path/johnathan_gamepiece.png", class: "gamepiece johnathan draggable", title: "Drag Me" %>
-						<%= image_tag "on_the_same_path/candice_gamepiece.png", class: "gamepiece candice draggable", title: "Drag Me" %>
-						&nbsp;
-						<div class="clearfix"></div>
-					</div><!--/span-->
-					<div class="span9" id="site-area">
-	          <div class="span8 blog-posts"><%= yield %></div>
-						<div class="span1 spacer">&nbsp;</div><!--/span-->
-					</div>
-        </div><!--/row-->
-      </div><!--/content-->
+       <div class="row" id="repeatable_layer">
+				<div class="span3 sidebar hidden-phone">
+					<div id="start_path">&nbsp;</div>
+					<%= image_tag "on_the_same_path/johnathan_gamepiece.png", class: "gamepiece johnathan draggable", title: "Drag Me" %>
+					<%= image_tag "on_the_same_path/candice_gamepiece.png", class: "gamepiece candice draggable", title: "Drag Me" %>
+					&nbsp;
+					<div class="clearfix"></div>
+				</div><!--/span-->
+				<div class="span9" id="site-area">
+			    <div class="span8 blog-posts"><%= yield %></div>
+					<div class="span1 spacer">&nbsp;</div><!--/span-->
+				</div>
+			</div><!--/row-->
+			</div><!--/content-->
 
       <div id="footer" class="hidden-phone">
       </div>
-
     </div> <!-- /container -->
 
     <!-- Javascripts
