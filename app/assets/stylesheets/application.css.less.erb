@@ -14,10 +14,12 @@
  */
 #site-area {
 	background-color: #ffffff;
+	position: relative;
+	z-index: 20;
 }
 #repeatable_layer {
 	background: url(<%=asset_path "on_the_same_path/repeatable_path.png"%>) repeat-y;
-	background-position: 19px;
+	background-position: -2px;
 }
 .sidebar {
 	position: relative;
@@ -36,6 +38,7 @@
 	height: 352px;
 	position: relative;
 	width: 100%;
+	background-position: -1px;
 	z-index: 1;
 }
 .blog-posts {
