@@ -45,13 +45,13 @@
           	<span class="icon-bar"></span>
 					</a>
 					<div class="brand_holder">
-          	<a class="brand" href="#">OnTheSamePath.com</a>
+          	<a class="brand" href="<%= root_path %>">OnTheSamePath.com</a>
 						<p class="tagline">Serving with <a href="http://www.missionaldigerati.org" title="A community of thinkers, designers and developers committed to leveraging technology to advance the pace of reaching every person on earth with the good news of Jesus Christ." target="_blank">Missional Digerati</a></p>
 					</div>
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "Home", root_path  %></li>
-							<li><%= link_to "About Us", root_path  %></li>
+							<li><%= link_to "About Us", page_path(:id => "about_us")  %></li>
 							<li><%= link_to "Learn More", root_path  %></li>
             </ul>
 						<div class="clearfix"></div>
