@@ -33,9 +33,10 @@ class ContactController < ApplicationController
 		@errors[:email] = 'Please provide a valid email address.' unless valid_email
 		
 		if @errors[:name].blank? and @errors[:email].blank? and params[:address].blank?
+			ContactNotifier.more_info_request(params).deliver
 			flash[:error] = nil
 			flash[:notice] = 'Thank you for your request.  We will contact you shortly.'
-			render :action => :learn_more
+			redirect_to learn_more_path
 		else
 			flash[:notice] = nil
 			flash[:error] = 'Unable to submit your request.'
