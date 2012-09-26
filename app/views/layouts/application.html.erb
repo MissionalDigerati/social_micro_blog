@@ -71,7 +71,13 @@
 					<div class="clearfix"></div>
 				</div><!--/span-->
 				<div class="span9" id="site-area">
-			    <div class="span8 blog-posts"><%= yield %></div>
+			    <div class="span8 blog-posts">
+						<div class="follow-links">
+							<a href="https://twitter.com/OnSamePath" class="twitter-follow-button" data-show-count="false">Follow @OnSamePath</a>
+							<a href="https://twitter.com/M_Digerati" class="twitter-follow-button" data-show-count="false">Follow @M_Digerati</a>
+						</div>
+						<%= yield %>
+					</div>
 					<div class="span1 spacer">&nbsp;</div><!--/span-->
 				</div>
 			</div><!--/row-->
@@ -85,5 +91,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
 		<%= yield :additional_js %>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </body>
 </html>
