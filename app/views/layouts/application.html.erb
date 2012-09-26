@@ -52,7 +52,7 @@
             <ul class="nav">
               <li><%= link_to "Home", root_path  %></li>
 							<li><%= link_to "About Us", page_path(:id => "about_us")  %></li>
-							<li><%= link_to "Learn More", root_path  %></li>
+							<li><%= link_to "Learn More", learn_more_path  %></li>
             </ul>
 						<div class="clearfix"></div>
           </div><!--/.nav-collapse -->
@@ -76,6 +76,7 @@
 							<a href="https://twitter.com/OnSamePath" class="twitter-follow-button" data-show-count="false">Follow @OnSamePath</a>
 							<a href="https://twitter.com/M_Digerati" class="twitter-follow-button" data-show-count="false">Follow @M_Digerati</a>
 						</div>
+						<%= render :partial => 'layouts/flashes' %>
 						<%= yield %>
 					</div>
 					<div class="span1 spacer">&nbsp;</div><!--/span-->

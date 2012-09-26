@@ -1,4 +1,7 @@
 SocialBlog::Application.routes.draw do
+  match 'learn_more' => 'contact#learn_more', :as => :learn_more, :method => :get
+  match 'learn_more_submitted' => 'contact#submit_learn_more_form', :as => :learn_more_submit, :method => :post
+
 	root :to => "social_media#index"
   get "social_media/index"
 
