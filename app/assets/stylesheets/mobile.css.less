@@ -3,7 +3,7 @@
 @import "twitter/bootstrap/variables.less"; // Modify this for custom colors, font-sizes, etc
 @import "twitter/bootstrap/mixins.less";
 /* Portrait*/
-@media (max-width: 480px) {
+@media (max-width: 750px) {
 	
 	body {
 		padding: 0px;
@@ -96,75 +96,4 @@
 			}
 		}
 	}
-}
-@media (min-width: 480px) and (max-width: 750px) {
-	
-	body {
-		padding: 0px;
-		margin: 0;
-	}
-	
-	.follow-links {
-		text-align: right;
-		padding: 5px 0px;
-		margin: 0px;
-	}
-	
-	a.brand {
-		font-size: 16px !important;
-	}
-	
-	div#site_wrapper {
-		width: 96%;
-		margin: 0 2%;
-		padding: 0;
-	}
-	
-	#repeatable_layer {
-		background-image: none;
-		background-position: 0px;
-		margin: 0;
-		padding: 0;
-		width: 100%;
-		
-		div#start_path {
-			display: none;
-			background-image: none;
-		}
-
-		.span9 {
-			width: 96%;
-			margin: 0;
-			padding: 2%;
-		}
-
-		.span1 {
-			display: none;
-		}
-		
-		.post-box {
-			position: relative;
-			width: 96%;
-			margin: 3% 0 !important;
-			padding: 2% !important;
-			background-color: white;
-			border: 1% solid #DDD;
-			.border-radius(5px);
-			border-image: initial;
-		}
-		
-		#blog-posts{
-			width: 100%;
-			padding: 0;
-			margin: 0;
-			
-			.pagination{
-				float: none;
-				text-align: center;
-			}
-		
-		}
-		
-	}
-
 }
