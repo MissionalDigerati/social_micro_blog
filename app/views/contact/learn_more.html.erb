@@ -1,42 +1,44 @@
-<h1>Learn More</h1>
-<p>If you would like to learn more about the vision of our ministry, please fill out the following information. We will contact you as soon as possible.</p>
-<%= form_tag learn_more_submit_path, method: :post, class: 'form-horizontal' do %>
-    <div class="control-group<%= has_error?(:name) %>">
-      <label class="control-label" for="name">Name</label>
-      <div class="controls">
-        <%= text_field_tag :name, params[:name] %>
-        <%= display_if_has_error(:name) %>
+<div class="page-content">
+  <h1>Learn More</h1>
+  <p>If you would like to learn more about the vision of our ministry, please fill out the following information. We will contact you as soon as possible.</p>
+  <%= form_tag learn_more_submit_path, method: :post, class: 'form-horizontal' do %>
+      <div class="control-group<%= has_error?(:name) %>">
+        <label class="control-label" for="name">Name</label>
+        <div class="controls">
+          <%= text_field_tag :name, params[:name] %>
+          <%= display_if_has_error(:name) %>
+        </div>
       </div>
-    </div>
-    <div class="control-group<%= has_error?(:email) %>">
-      <label class="control-label" for="email">Email</label>
-      <div class="controls">
-        <%= text_field_tag :email, params[:email] %>
-        <%= display_if_has_error(:email) %>
+      <div class="control-group<%= has_error?(:email) %>">
+        <label class="control-label" for="email">Email</label>
+        <div class="controls">
+          <%= text_field_tag :email, params[:email] %>
+          <%= display_if_has_error(:email) %>
+        </div>
       </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="phone_number">Phone Number</label>
-      <div class="controls">
-        <%= text_field_tag :phone_number, params[:phone_number] %>
+      <div class="control-group">
+        <label class="control-label" for="phone_number">Phone Number</label>
+        <div class="controls">
+          <%= text_field_tag :phone_number, params[:phone_number] %>
+        </div>
       </div>
-    </div>
-    <div class="control-group address-field">
-      <label class="control-label" for="address">Address</label>
-      <div class="controls">
-        <%= text_field_tag :address, params[:address] %>
+      <div class="control-group address-field">
+        <label class="control-label" for="address">Address</label>
+        <div class="controls">
+          <%= text_field_tag :address, params[:address] %>
+        </div>
       </div>
-    </div>
-    <div class="control-group">
-      <label class="control-label" for="best_times">Best Times to Meet</label>
-      <div class="controls">
-        <%= text_area_tag :best_times, params[:best_times], rows: 10 %>
+      <div class="control-group">
+        <label class="control-label" for="best_times">Best Times to Meet</label>
+        <div class="controls">
+          <%= text_area_tag :best_times, params[:best_times], rows: 10 %>
+        </div>
       </div>
-    </div>
-    <div class="control-group">
-      <div class="controls">
-        <%= button_tag "Submit", class: 'btn btn-primary' %>
+      <div class="control-group">
+        <div class="controls">
+          <%= button_tag "Submit", class: 'btn btn-primary' %>
+        </div>
       </div>
-    </div>
-<% end %>
-<div class="spacer_500"></div>
+  <% end %>
+</div>
+<div class="spacer_500 hidden-phone"></div>
