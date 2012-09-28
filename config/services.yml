@@ -1,0 +1,17 @@
+services:
+  twitter:
+    consumer_key: FqIuU8wl8szZGUgXleb8g
+    consumer_secret: LJNbVOhtIduaYzuvoQ8zXKU0to73B9DQy4etMfnVojs
+    oauth_token: 38516491-rx4oiwpQaOF7DBYVYd0vw6SeoWQqisXh28Zx4ntKc
+    oauth_token_secret: s2NIkfH6cdteJIPZpXGM9ed6G8SjZq8s4CvNp2HQ
+accounts:
+  OnSamePath:
+    provider: twitter
+    username: OnSamePath
+    name: On the Same Path
+    pull_total: 20
+  M_Digerati:
+    provider: twitter
+    username: M_Digerati
+    name: Missional Digerati
+    pull_total: 100
