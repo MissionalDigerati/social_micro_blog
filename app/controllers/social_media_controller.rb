@@ -18,11 +18,24 @@
 # @copyright Copyright 2012 Missional Digerati
 #
 class SocialMediaController < ApplicationController
+	before_filter :set_account_settings
   # List all social media
 	#
 	def index
-		settings = YAML::load(File.open(File.join(Rails.root,'config','services.yml')))
-		@accounts = settings['accounts'] 
 		@social_media = SocialMedia.order("provider_created_datetime desc").page(params[:page]).per(20)
   end
+
+	# List a specific social media item
+	#
+	def show
+		@social_media = SocialMedia.where(["social_media.provider = ? and social_media.provider_id = ?", params[:provider], params[:provider_id]]).first
+	end
+	
+	private
+		# set the account settings
+		#
+		def set_account_settings
+			settings = YAML::load(File.open(File.join(Rails.root,'config','services.yml')))
+			@accounts = settings['accounts']
+		end
 end

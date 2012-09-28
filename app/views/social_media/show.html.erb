@@ -1,0 +1,5 @@
+<%= render :partial => "#{@social_media.provider.downcase}", :locals => {:post => @social_media} %>
+<div class="spacer_500 hidden-phone"></div>
+<%= content_for :additional_js do %>
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<% end %>

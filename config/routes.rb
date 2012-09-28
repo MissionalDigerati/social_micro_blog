@@ -1,65 +1,27 @@
 SocialBlog::Application.routes.draw do
-  match 'learn_more' => 'contact#learn_more', :as => :learn_more, :method => :get
-  match 'learn_more_submitted' => 'contact#submit_learn_more_form', :as => :learn_more_submit, :method => :post
-	match 'about_us' => 'high_voltage/pages#show', :id => 'about_us', :as => :about_us
+  match 'learn-more' => 'contact#learn_more', :as => :learn_more, :method => :get
+  match 'learn-more-submitted' => 'contact#submit_learn_more_form', :as => :learn_more_submit, :method => :post
+	match 'about-us' => 'high_voltage/pages#show', :id => 'about_us', :as => :about_us
+	match '/post/:provider/:provider_id' => 'social_media#show', :as => :post
 
 	root :to => "social_media#index"
   get "social_media/index"
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+	# 301 redirects
+	#
+	match "/2011/04/be-a-trader/", :to => redirect("/post/twitter/250997866577944577")
+	match "/2010/08/power-of-social-media/", :to => redirect("/post/twitter/250997631860486144")
+	match "/2010/03/featured-in-mission-frontiers/", :to => redirect("/post/twitter/250997316696301568")
+	match "/2010/02/joshua-project-iphone-app/", :to => redirect("/post/twitter/250997316696301568")
+	match "/2010/02/video-dont-waste-your-life/", :to => redirect("/post/twitter/250997152426360832")
+	match "/page/2/", :to => redirect("/?page=2")
+	match "/page/3/", :to => redirect("/?page=3")
+	match "/2010/01/video-perspective/", :to => redirect("/post/twitter/250996845743075329")
+	match "/2009/12/state-of-christianity/", :to => redirect("/post/twitter/250995084609339392")
+	match "/2009/12/major-in-missions/", :to => redirect("/post/twitter/250994785794547712")
+	match "/2009/12/ready-for-missions/", :to => redirect("/post/twitter/250994550250799104")
+	match "/2009/11/video-explore/", :to => redirect("/post/twitter/250769880452849664")
+	match "/2009/11/life-perspective/", :to => redirect("/")
+	match "/2009/10/video-strategy/", :to => redirect("/post/twitter/251768096015134720")
+	match "/2009/10/can-god-use-computer-geeks/", :to => redirect("/post/twitter/251769251831107584")
 end
