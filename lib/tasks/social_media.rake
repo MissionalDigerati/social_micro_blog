@@ -34,7 +34,7 @@ namespace :social_media do
 			posts.each do |post|
 				new_social_media = SocialMedia.new({ 	provider: val['provider'].downcase,
 																									account: val['username'],
-																									provider_id: "#{post['id']}", 
+																									provider_id: post['id'].to_s, 
 																									content: post['content'], 
 																									provider_created_datetime: post['created']
 																								})
