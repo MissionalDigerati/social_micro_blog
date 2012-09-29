@@ -21,6 +21,9 @@ SocialBlog::Application.configure do
   config.assets.digest = true
 
 	# setup mail
+	config.action_mailer.default_url_options = { :host => 'onthesamepath.herokuapp.com' }
+	config.action_mailer.perform_deliveries = true
+	config.action_mailer.default :charset => "utf-8"
 	config.action_mailer.delivery_method = :smtp
 
   # Defaults to nil and saved in location specified by config.assets.prefix
