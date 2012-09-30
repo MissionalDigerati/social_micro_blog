@@ -5,7 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "OnTheSamePath.com" %></title>
-    <%= csrf_meta_tags %>
+		<meta name="revisit-after" content="14 days" />
+		<meta name="description" content="OntheSamePath.com is the journey of two believers who want to live more strategically for God's kingdom.  Johnathan and Candice desire to put their skills to work for the kingdom.  Join us on the same path for His glory.">
+		<meta name="MSSmartTagsPreventParsing" content="TRUE" />
+		<meta name="keywords" content=" onthesamepath.com, same, path, Johnathan, Pulos, Candice, Missional, Digerati, Missional Digerati, web, developer, web development, project director" />
+    <meta property="og:title" content="OntheSamePath.com" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="http://<%= request.host+request.fullpath %>" />
+		<meta property="og:image" content="http://<%= request.host+asset_path('favicons/on-same-path-144x144.png') %>" />
+		<%= csrf_meta_tags %>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
