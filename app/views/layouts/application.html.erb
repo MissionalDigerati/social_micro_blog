@@ -61,7 +61,11 @@
               <li><%= link_to "Home", root_path  %></li>
 							<li><%= link_to "About Us", about_us_path  %></li>
 							<li><%= link_to "Learn More", learn_more_path  %></li>
+							<li class="hidden-desktop"><%= link_to "Donate", donate_url, target: "_blank"  %></li>
             </ul>
+            <div class="pull-right hidden-phone hidden-tablet" style="margin-top: 19px;">
+  						<%= link_to "<i class='icon-gift icon-white'></i> Donate".html_safe, donate_url, class: "btn btn-primary btn-small", target: "_blank"  %>
+  					</div>
 						<div class="clearfix"></div>
           </div><!--/.nav-collapse -->
 					<div class="pull-right hidden-phone hidden-tablet add-this">

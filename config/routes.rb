@@ -3,6 +3,7 @@ SocialBlog::Application.routes.draw do
   match 'learn-more-submitted' => 'contact#submit_learn_more_form', :as => :learn_more_submit, :method => :post
 	match 'about-us' => 'high_voltage/pages#show', :id => 'about_us', :as => :about_us
 	match '/post/:provider/:provider_id' => 'social_media#show', :as => :post
+	match '/donate' => redirect("http://bit.ly/Ry6XlK"), :as => :donate
 
 	root :to => "social_media#index"
   get "social_media/index"
