@@ -22,3 +22,4 @@ _new_features/
 /spec/config/services.yml
 /spec/vcr/
 /lib/tasks/vcr/
+/config/config.yml

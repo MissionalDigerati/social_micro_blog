@@ -2,11 +2,20 @@ development:
   gmail:
     user_name: joe
     password: secret
+  mailchimp:
+    api_key: key
+    new_subscriber_list: list_id
 test:
   gmail:
     user_name: joe
     password: secret
+  mailchimp:
+    api_key: key
+    new_subscriber_list: list_id
 production:
   gmail:
     user_name: joe
     password: secret
+  mailchimp:
+    api_key: key
+    new_subscriber_list: list_id

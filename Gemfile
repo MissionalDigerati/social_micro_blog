@@ -41,6 +41,7 @@ gem 'jquery-rails'
 
 # services
 gem 'twitter'
+gem 'gibbon'
 gem 'oauth'
 gem "twitter-text", "~> 1.5.0"
 gem 'kaminari'

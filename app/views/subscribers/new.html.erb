@@ -1,0 +1,39 @@
+<div class="page-content">
+  <h1>Subscribe to Our Newslettter</h1>
+  <p>If you would like to join us on our journey, and keep up to date on our progress,  please fill out the following information.</p>
+  <%= form_for @subscriber,  url: '/subscribe-submit', html: {class: 'form-horizontal'} do |f| %>
+      <div class="control-group<%= has_error?(:fname) %>">
+        <label class="control-label" for="name">First Name</label>
+        <div class="controls">
+          <%= f.text_field :fname %>
+          <%= display_if_has_error(:fname) %>
+        </div>
+      </div>
+      <div class="control-group<%= has_error?(:lname) %>">
+        <label class="control-label" for="name">Last Name</label>
+        <div class="controls">
+          <%= f.text_field :lname %>
+          <%= display_if_has_error(:lname) %>
+        </div>
+      </div>
+      <div class="control-group<%= has_error?(:email) %>">
+        <label class="control-label" for="name">Email</label>
+        <div class="controls">
+          <%= f.text_field :email %>
+          <%= display_if_has_error(:email) %>
+        </div>
+      </div>
+      <div class="control-group address-field">
+        <label class="control-label" for="address">Address</label>
+        <div class="controls">
+          <%= text_field_tag :address, params[:address] %>
+        </div>
+      </div>
+      <div class="control-group">
+        <div class="controls">
+          <%= f.button "Join Newsletter", class: 'btn btn-primary' %>
+        </div>
+      </div>
+  <% end %>
+</div>
+<div class="spacer_500 hidden-phone"></div>
