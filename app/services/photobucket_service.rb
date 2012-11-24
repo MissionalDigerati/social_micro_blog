@@ -41,30 +41,25 @@ class PhotobucketService
 			post = Hash.new
 			post['id']  = item.at_xpath("guid").text
 			medium = item.at_xpath("media:content").attribute("medium").text
-			post['content'] = (medium == "image") ? pp_image(item) : pp_video(item) 
+			post['content'] = (medium == "image") ? pp_image(item) : pp_video(item)
 			post['created'] = item.at_xpath("pubDate").text
 			posts << post
 		end
 		posts
 	end
 	
-	private	
-		# is the url an image.  Uses extension to determine this
-		#
-		def is_image?(url)
-			['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tif', '.tiff', '.xpng'].include?(File.extname(url))
-		end
-		
+	private
 		# pretty print image content
 		#
 		def pp_image(item)
-			"content"
+			image_url = item.at_xpath("enclosure").attribute("url").text
+			@image_format % [image_url]
 		end
 		
 		# pretty print video content
 		#
 		def pp_video(item)
-			"content"
+			video_url = item.at_xpath("enclosure").attribute("url").text
 		end
 		
 end
