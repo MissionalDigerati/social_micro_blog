@@ -37,3 +37,4 @@ gem 'oauth'
 gem "twitter-text", "~> 1.5.0"
 gem 'kaminari'
 gem "twitter-bootstrap-rails"
+gem "nokogiri"

@@ -74,6 +74,7 @@ GEM
     mime-types (1.19)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    nokogiri (1.5.5)
     oauth (0.4.7)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -160,6 +161,7 @@ DEPENDENCIES
   factory_girl_rails
   jquery-rails
   kaminari
+  nokogiri
   oauth
   rails (= 3.2.8)
   rspec-rails (~> 2.0)
