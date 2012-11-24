@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919223758) do
+ActiveRecord::Schema.define(:version => 20121124224053) do
 
   create_table "social_media", :force => true do |t|
     t.string   "provider"
     t.string   "account"
-    t.integer  "provider_id",               :null => false
+    t.string   "provider_id",               :null => false
     t.text     "content"
     t.datetime "provider_created_datetime"
     t.datetime "created_at",                :null => false

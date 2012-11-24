@@ -39,7 +39,7 @@ class PhotobucketService
 		doc = Nokogiri::XML(open(@rss_feed_url))
 		doc.xpath("//rss/channel/item").each do |item|
 			post = Hash.new
-			post['id']  = item.at_xpath("guid").text
+			post['id']  = File.basename(item.at_xpath("enclosure").attribute("url").text, '.*')
 			medium = item.at_xpath("media:content").attribute("medium").text
 			post['content'] = (medium == "image") ? pp_image(item) : pp_video(item)
 			post['created'] = item.at_xpath("pubDate").text
