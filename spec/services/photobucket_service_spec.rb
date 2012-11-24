@@ -41,10 +41,11 @@ describe PhotobucketService do
 			@photobucket.image_format.should eq("<img src='test.html'/>")
 		end
 		
-		it "should set the video_service_format from SocialMedia Class", :vcr do
+		it "should overide the video_service_format from SocialMedia Class", :vcr do
 			@social_media.video_service_format = "<video url='test.html'/>"
 			@photobucket.setup(@social_media)
-			@photobucket.video_service_format.should eq("<video url='test.html'/>")
+			@photobucket.video_service_format.should_not eq("<video url='test.html'/>")
+			@photobucket.video_service_format.should match("embed")
 		end
 		
 	end
