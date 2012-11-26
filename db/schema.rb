@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919223758) do
+ActiveRecord::Schema.define(:version => 20121124224053) do
 
   create_table "social_media", :force => true do |t|
     t.string   "provider"

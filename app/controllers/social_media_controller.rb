@@ -22,7 +22,9 @@ class SocialMediaController < ApplicationController
   # List all social media
 	#
 	def index
-		@social_media = SocialMedia.order("provider_created_datetime desc").page(params[:page]).per(20)
+		settings = YAML::load(File.open(File.join(Rails.root,'config','services.yml')))
+		@accounts = settings['accounts'] 
+		@social_media = SocialMedia.order("provider_created_datetime desc").page(params[:page]).per(15)
   end
 
 	# List a specific social media item
