@@ -28,7 +28,6 @@ class PhotobucketService
 	def setup(context)
 		@credentials = context.credentials
 		@image_format = context.image_format
-		@video_service_format = "<embed type='application/x-shockwave-flash' allowFullscreen='true' allowNetworking='all' wmode='transparent' src='http://static.photobucket.com/player.swf' flashvars='file=%s'>"
 	end
 	
 	# get the latest feed data
@@ -53,14 +52,19 @@ class PhotobucketService
 		#
 		def pp_image(item)
 			image_url = item.at_xpath("enclosure").attribute("url").text
-			@image_format % [image_url]
+			title = item.at_xpath("media:content/media:title").text
+			desc = item.at_xpath("media:content/media:description").text
+			image_html = @image_format % [image_url]
+			"#{image_html}<h3 class='post_title'>#{title}</h3><p class='post_desc'>#{desc}</p>"
 		end
 		
 		# pretty print video content
 		#
 		def pp_video(item)
 			video_url = item.at_xpath("enclosure").attribute("url").text
-			@video_service_format % [video_url]
+			title = item.at_xpath("media:content/media:title").text
+			desc = item.at_xpath("media:content/media:description").text
+			"<h3 class='post_title'>#{title}</h3><p class='post_desc'>#{desc} <a href='#{video_url}' target='_blank'>Watch Now</a></p>"
 		end
 		
 end
