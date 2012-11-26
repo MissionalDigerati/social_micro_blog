@@ -1,4 +1,3 @@
-email_settings = YAML.load_file(File.join(Rails.root.to_s, "config", "config.yml"))[Rails.env]['gmail']
 if Rails.env == 'production'
 	ActionMailer::Base.smtp_settings = {
 	  :address        => 'smtp.sendgrid.net',
