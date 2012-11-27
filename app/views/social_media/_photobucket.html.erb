@@ -9,5 +9,6 @@
 		<div class="clearfix"></div>
 	</div>
   <%= post.content.html_safe %>
-  <div class="date-box"><%= post.creation_date %></div>
+  <div class="date-box hidden-phone"><%= post.creation_date %></div>
+	<div class="date-mobile-box visible-phone"><em><%= post.creation_date %></em></div>
 </div>
