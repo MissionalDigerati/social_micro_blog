@@ -52,11 +52,18 @@ describe TwitterhashService do
 			@twitter.video_service_format.should eq("<video url='test.html'/>")
 		end
 		
+		
 	end
 	
 	it "should get the latest tweets", :vcr do
 		tweets = @twitter.latest('mobmin', 10)
 		tweets.length.should eq(10)
+	end
+	
+	it "should return tweets with the selected hashtag", :vcr do
+	  hashtag = 'MobMin'
+	  tweets = @twitter.latest(hashtag, 1)
+	  tweets.first['content'].match(/#{Regexp.escape('#' + hashtag)}/).length.should == 1
 	end
 	
 	context "private methods" do
