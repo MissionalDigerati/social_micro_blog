@@ -14,21 +14,19 @@
 # along with this program.  If not, see 
 # <http://www.gnu.org/licenses/>.
 #
-# @author Johnathan Pulos <johnathan@missionaldigerati.org>
-# @copyright Copyright 2012 Missional Digerati
 #
 # http://infovore.org/archives/2006/08/02/getting-a-class-object-in-ruby-from-a-string-containing-that-classes-name/
 # Initialize Class with String Kernel.const_get('Twitter')
 require_relative "../../app/services/social_media_service.rb"
-require_relative "../../app/services/twitter_service.rb"
+require_relative "../../app/services/twitter_hash_service.rb"
 require 'yaml'
 require 'spec_helper'
 
-describe TwitterService do
+describe TwitterhashService do
 	
 	before(:each) do
-		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..', 'config','services.yml')))['services']['twitter']
-		@twitter = TwitterService.new
+		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..', 'config','services.yml')))['services']['twitterhash']
+		@twitter = TwitterhashService.new
 		@social_media = SocialMediaService.new(@twitter, @credentials)
 		@twitter.setup(@social_media)
 	end
@@ -36,28 +34,28 @@ describe TwitterService do
 	context "setup" do
 		
 		it "should set the credentials attribute", :vcr do
-			tweets = @twitter.latest('jpulos', 1)
+			tweets = @twitter.latest('mobmin', 1)
 			@twitter.credentials.should eq(@credentials)
 		end
 		
 		it "should set the image_format from SocialMedia Class", :vcr do
 			@social_media.image_format = "<img src='test.html'/>"
 			@twitter.setup(@social_media)
-			tweets = @twitter.latest('jpulos', 1)
+			tweets = @twitter.latest('mobmin', 1)
 			@twitter.image_format.should eq("<img src='test.html'/>")
 		end
 		
 		it "should set the video_service_format from SocialMedia Class", :vcr do
 			@social_media.video_service_format = "<video url='test.html'/>"
 			@twitter.setup(@social_media)
-			tweets = @twitter.latest('jpulos', 1)
+			tweets = @twitter.latest('mobmin', 1)
 			@twitter.video_service_format.should eq("<video url='test.html'/>")
 		end
 		
 	end
 	
 	it "should get the latest tweets", :vcr do
-		tweets = @twitter.latest('jpulos', 10)
+		tweets = @twitter.latest('mobmin', 10)
 		tweets.length.should eq(10)
 	end
 	
