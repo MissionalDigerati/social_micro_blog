@@ -53,7 +53,7 @@ describe PhotobucketService do
 		
 		it "should get the latest image", :vcr do
 			pb = @photobucket.latest('OnSamePath', 100)
-			pb.length.should eq(2)
+			pb.empty?.should be_false
 		end
 		
 		context "correct formatted post", :vcr do

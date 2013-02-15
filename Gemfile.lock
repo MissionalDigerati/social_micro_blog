@@ -190,6 +190,7 @@ DEPENDENCIES
   heroku
   high_voltage
   jquery-rails
+  json
   kaminari
   nokogiri
   oauth

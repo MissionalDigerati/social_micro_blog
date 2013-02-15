@@ -48,3 +48,4 @@ gem 'kaminari'
 gem "twitter-bootstrap-rails"
 gem "high_voltage"
 gem "nokogiri"
+gem "json"
