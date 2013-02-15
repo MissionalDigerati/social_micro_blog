@@ -18,6 +18,7 @@
 # @copyright Copyright 2012 Missional Digerati
 require_relative "../../app/services/social_media_service.rb"
 require_relative "../../app/services/twitter_service.rb"
+require_relative "../../app/services/twitter_hash_service.rb"
 require 'yaml'
 
 settings = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..','config','services.yml')))
