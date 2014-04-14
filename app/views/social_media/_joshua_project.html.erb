@@ -1,8 +1,8 @@
 <div class="post-box resizable-video jp_unreached">
 <div class="powered-by-box"> Powered by Joshua Project API</div>
 	<div class="profile-box">
-		<%= link_to image_tag("#{@accounts['JoshuaProject']['avatar_url']}", class: 'profile-img'), "http://www.joshuaproject.net", target: "_blank" %>
-		<div class="details">
+		<%= avatar(post, "http://www.joshuaproject.net") %>
+        <div class="details">
 			<%= link_to "Joshua Project", "http://www.joshuaproject.net", target: "_blank", class: 'profile-name' %><br>
 		</div>
 		<div class="clearfix"></div>
