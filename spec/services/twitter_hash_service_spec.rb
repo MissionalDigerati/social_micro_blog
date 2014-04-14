@@ -25,7 +25,7 @@ require 'spec_helper'
 describe TwitterhashService do
 	
 	before(:each) do
-		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..', 'config','services.yml')))['services']['twitterhash']
+		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', 'config','services.yml')))['services']['twitterhash']
 		@twitter = TwitterhashService.new
 		@social_media = SocialMediaService.new(@twitter, @credentials)
 		@twitter.setup(@social_media)
@@ -63,7 +63,7 @@ describe TwitterhashService do
 	it "should return tweets with the selected hashtag", :vcr do
 	  hashtag = 'MobMin'
 	  tweets = @twitter.latest(hashtag, 1)
-	  tweets.first['content'].match(/#{Regexp.escape('#' + hashtag)}/).length.should == 1
+	  tweets.first['content'].match(/#{Regexp.escape('#' + hashtag)}/i).length.should == 1
 	end
 	
 	context "private methods" do

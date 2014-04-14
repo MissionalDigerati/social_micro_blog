@@ -22,7 +22,7 @@ require 'spec_helper'
 describe JoshuaProjectService do
 
 	before(:each) do
-		@credentials = Array.new
+		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', 'config','services.yml')))['services']['joshua_project']
 		@jp = JoshuaProjectService.new
 		@social_media = SocialMediaService.new(@jp, @credentials)
 		@jp.setup(@social_media)

@@ -25,7 +25,7 @@ require 'spec_helper'
 describe SocialMedia do
 	
 	before(:each) do
-		credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..', 'config','services.yml')))['services']['twitter']
+		credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', 'config','services.yml')))['services']['twitter']
 		@social_media = SocialMediaService.new(TwitterService.new, credentials)
 	end
 
