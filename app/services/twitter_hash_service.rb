@@ -47,6 +47,14 @@ class TwitterhashService
 			else
 				new_tweet['avatar'] = ''
 			end
+			if tweet['user'].has_key?('screen_name')
+				new_tweet['account'] = tweet['user']['screen_name']
+			else
+				new_tweet['account'] = account
+				# Overwrite avatar so we do not get the wrong users avatar.  Hashtags do not have avatars
+				#
+				new_tweet['avatar'] = ''
+			end
 			tweets << new_tweet
 		end
 		tweets

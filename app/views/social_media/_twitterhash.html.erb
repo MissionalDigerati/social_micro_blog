@@ -3,7 +3,7 @@
 	<div class="profile-box">
 		<%= avatar(post, "https://twitter.com/#{post.account}") %>
 		<div class="details">
-			<%= link_to "#{@accounts[post.account.titlecase]['name']}", "https://twitter.com/search?q=%23#{post.account}", target: "_blank", class: 'profile-name' %><br>
+			<%= link_to "#{post.account.titlecase}", "https://twitter.com/search?q=%23#{post.account}", target: "_blank", class: 'profile-name' %><br>
 			<%= link_to "##{post.account.titlecase}", "https://twitter.com/search?q=%23#{post.account}", target: "_blank" %>
 		</div>
 		<div class="clearfix"></div>

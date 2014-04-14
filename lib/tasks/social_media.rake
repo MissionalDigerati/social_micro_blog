@@ -34,11 +34,12 @@ namespace :social_media do
 			social_media = SocialMediaService.new(Kernel.const_get("#{val['provider'].titlecase.delete('^a-zA-Z')}Service").new, settings['services'][val['provider']])
 			posts = social_media.latest(val['username'], val['pull_total'])
 			posts.each do |post|
+				account = post['account'].nil? ? val['username'] : post['account']
 				provider = val['provider'].downcase
 				new_social_media = SocialMedia.new(
 				{
 					provider: provider,
-					account: val['username'],
+					account: account,
 					provider_id: post['id'], 
 					content: post['content'], 
 					provider_created_datetime: post['created']
@@ -50,7 +51,7 @@ namespace :social_media do
 					post['avatar'] = val['avatar_url']
 				end
 				unless post['avatar'].nil?
-					social_avatar = SocialAvatar.find_or_initialize_by_account_and_provider(val['username'], provider)
+					social_avatar = SocialAvatar.find_or_initialize_by_account_and_provider(account, provider)
 					social_avatar.update_attributes(avatar_url: post['avatar'])
 				end
 			end
