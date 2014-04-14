@@ -42,6 +42,11 @@ class TwitterhashService
 			new_tweet['id'] = tweet['id']
 			new_tweet['content'] = pp(tweet)
 			new_tweet['created'] = tweet['created_at']
+			if tweet['user'].has_key?('profile_image_url')
+				new_tweet['avatar'] = tweet['user']['profile_image_url']
+			else
+				new_tweet['avatar'] = ''
+			end
 			tweets << new_tweet
 		end
 		tweets
