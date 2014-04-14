@@ -11,7 +11,7 @@ describe SocialAvatar do
             end
         
             it "should return false if the post does not exist" do
-                social_avatar = FactoryGirl.build(:social_avatar, provider_id: 23398773)
+                social_avatar = FactoryGirl.build(:social_avatar, account: 'mrsmith')
                 social_avatar.avatar_exists?.should be_false
                 social_avatar.avatar_exists?.should_not be_nil
             end

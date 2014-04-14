@@ -15,11 +15,10 @@ ActiveRecord::Schema.define(:version => 20140414181927) do
 
   create_table "social_avatars", :force => true do |t|
     t.string   "provider"
-    t.string   "provider_id", :null => false
     t.string   "account"
     t.string   "avatar_url"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "social_media", :force => true do |t|

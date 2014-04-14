@@ -1,10 +1,10 @@
 class SocialAvatar < ActiveRecord::Base
-  attr_accessible :account, :avatar_url, :provider, :provider_id
+  attr_accessible :account, :avatar_url, :provider
 
   #checks if the avatar exists
   #
   def avatar_exists?
-    SocialAvatar.where("social_avatars.provider = ? and social_avatars.provider_id = ?", self.provider, self.provider_id).present?
+    SocialAvatar.where("social_avatars.provider = ? and social_avatars.account = ?", self.provider, self.account).present?
   end
 
 end
