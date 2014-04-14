@@ -39,6 +39,7 @@ describe SocialMedia do
 		@tweets = @social_media.latest('jpulos', 5)
 		@tweets.first['id'].to_s.empty?.should be_false
 		@tweets.first['content'].to_s.empty?.should be_false
+		@tweets.first['avatar'].to_s.empty?.should be_false
 		@tweets.first['created'].to_s.empty?.should be_false
 	end
 	
