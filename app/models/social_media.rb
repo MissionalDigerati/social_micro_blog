@@ -11,4 +11,9 @@ class SocialMedia < ActiveRecord::Base
 		self.provider_created_datetime.strftime("%l:%M %p - %e %B %Y")
 	end
 
+	def avatar
+		social_avatar = SocialAvatar.where("social_avatars.provider = ? and social_avatars.account = ?", self.provider, self.account).first
+		social_avatar.nil? ? nil : social_avatar.avatar_url
+	end
+
 end
