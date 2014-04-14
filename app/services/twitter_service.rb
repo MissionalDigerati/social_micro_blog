@@ -35,7 +35,7 @@ class TwitterService
 	def latest(account, max)
 		tweets = Array.new
 		access_token = get_access_token
-		response = access_token.request(:get, "http://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=#{account}&count=#{max}")
+		response = access_token.request(:get, "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=#{account}&count=#{max}")
 		results = JSON.parse(response.body)
 		results.each do |tweet|
 			new_tweet = {}
