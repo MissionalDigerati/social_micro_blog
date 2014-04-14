@@ -22,7 +22,7 @@ require 'spec_helper'
 describe JoshuaProjectService do
 
 	before(:each) do
-		@credentials = Array.new
+		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', 'config','services.yml')))['services']['joshua_project']
 		@jp = JoshuaProjectService.new
 		@social_media = SocialMediaService.new(@jp, @credentials)
 		@jp.setup(@social_media)
@@ -73,6 +73,12 @@ describe JoshuaProjectService do
 			jp_result = @jp.latest('', 1)
 			jp_result.first.has_key?("created").should be_true
 			jp_result.first["created"].empty?.should be_false
+		end
+
+		it "should have an avatar" do
+			jp_result = @jp.latest('', 1)
+			jp_result.first.has_key?("avatar").should be_true
+			jp_result.first["avatar"].empty?.should be_false
 		end
 		
 	end

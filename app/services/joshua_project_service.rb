@@ -38,7 +38,12 @@ class JoshuaProjectService
 		# Use todays date since it is new every day only
 		#
 		items.each do |item|
-			post ={"id" => Date.today.strftime("%m%d%Y"), "created" => Time.now.to_s, "content" => pp_widget(item)}
+			post = {
+				"id" => Date.today.strftime("%m%d%Y"),
+				"created" => Time.now.to_s,
+				"content" => pp_widget(item),
+				"avatar"	=>	"http://joshuaproject.net/assets/img/jp_logo_color.png"
+			}
 			posts << post
 		end
 		posts

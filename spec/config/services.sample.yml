@@ -1,0 +1,34 @@
+services:
+  twitter:
+    consumer_key: YOUR KEY
+    consumer_secret: YOUR SECRET
+    oauth_token: OAUTH TOKEN
+    oauth_token_secret: OAUTH TOKEN
+  twitterhash:
+    consumer_key: YOUR KEY
+    consumer_secret: YOUR SECRET
+    oauth_token: OAUTH TOKEN
+    oauth_token_secret: OAUTH TOKEN
+  joshua_project:
+    api_key: API KEY
+accounts:
+  TITLEOFACCOUNT: # Camel case 1 word
+    provider: twitter
+    username: USERNAME
+    name: TITLE OF ACCOUNT
+    pull_total: 20
+  TITLEOFACCOUNT: # Camel case 1 word
+    provider: photobucket
+    username: USERNAME
+    name: TITLE OF ACCOUNT
+    pull_total: 100
+  JoshuaProject:
+    provider: joshua_project
+    username: Joshua Project
+    name: JoshuaProject.net
+    pull_total: 1
+  TITLEOFACCOUNT: # Camel case 1 word
+    provider: twitterhash
+    username: HASHTAG
+    name: TITLE OF ACCOUNT
+    pull_total: 100
