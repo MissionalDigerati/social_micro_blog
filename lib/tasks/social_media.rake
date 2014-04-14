@@ -46,8 +46,10 @@ namespace :social_media do
 				new_social_media.save unless new_social_media.post_exists?
 				# Update or create the avatar
 				#
-				social_avatar = SocialAvatar.find_or_initialize_by_account_and_provider(val['username'], provider)
-				social_avatar.update_attributes(avatar_url: post['avatar'])
+				unless post['avatar'].nil?
+					social_avatar = SocialAvatar.find_or_initialize_by_account_and_provider(val['username'], provider)
+					social_avatar.update_attributes(avatar_url: post['avatar'])
+				end
 			end
 		end
 	end
