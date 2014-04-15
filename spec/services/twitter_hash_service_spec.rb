@@ -25,7 +25,7 @@ require 'spec_helper'
 describe TwitterhashService do
 	
 	before(:each) do
-		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..', 'config','services.yml')))['services']['twitterhash']
+		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', 'config','services.yml')))['services']['twitterhash']
 		@twitter = TwitterhashService.new
 		@social_media = SocialMediaService.new(@twitter, @credentials)
 		@twitter.setup(@social_media)
@@ -63,7 +63,35 @@ describe TwitterhashService do
 	it "should return tweets with the selected hashtag", :vcr do
 	  hashtag = 'MobMin'
 	  tweets = @twitter.latest(hashtag, 1)
-	  tweets.first['content'].match(/#{Regexp.escape('#' + hashtag)}/).length.should == 1
+	  tweets.first['content'].match(/#{Regexp.escape('#' + hashtag)}/i).length.should == 1
+	end
+
+	context "correct formatted post", :vcr do
+		
+		it "should have an id" do
+			tweets = @twitter.latest('mobmin', 1)
+			tweets.first.has_key?("id").should be_true
+			tweets.first["id"].to_s.empty?.should be_false
+		end
+		
+		it "should have an content" do
+			tweets = @twitter.latest('mobmin', 1)
+			tweets.first.has_key?("content").should be_true
+			tweets.first["content"].empty?.should be_false
+		end
+		
+		it "should have a created date" do
+			tweets = @twitter.latest('mobmin', 1)
+			tweets.first.has_key?("created").should be_true
+			tweets.first["created"].empty?.should be_false
+		end
+
+		it "should have an avatar" do
+			tweets = @twitter.latest('mobmin', 1)
+			tweets.first.has_key?("avatar").should be_true
+			tweets.first["avatar"].empty?.should be_false
+		end
+		
 	end
 	
 	context "private methods" do

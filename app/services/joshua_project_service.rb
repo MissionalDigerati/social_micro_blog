@@ -26,8 +26,8 @@ class JoshuaProjectService
 	#
 	def setup(context)
 		@credentials = context.credentials
-		@image_format = context.image_format
-		@api_feed_url = "http://jpapi.herokuapp.com/people_groups/daily_unreached.json?month=#{Date.today.strftime("%m")}&day=#{Date.today.strftime("%d")}"
+		@image_format = "<img src='%s' alt='Social Media Image' class='jp_api_profile'><br>"
+		@api_feed_url = "http://jpapi.codingstudio.org/v1/people_groups/daily_unreached.json?api_key=#{@credentials['api_key']}&month=#{Date.today.strftime("%m")}&day=#{Date.today.strftime("%d")}"
 	end
 	
 	# get the latest feed data
@@ -38,7 +38,12 @@ class JoshuaProjectService
 		# Use todays date since it is new every day only
 		#
 		items.each do |item|
-			post ={"id" => Date.today.strftime("%m%d%Y"), "created" => Time.now.to_s, "content" => pp_widget(item)}
+			post = {
+				"id" => Date.today.strftime("%m%d%Y"),
+				"created" => Time.now.to_s,
+				"content" => pp_widget(item),
+				"avatar"	=>	"http://joshuaproject.net/assets/img/jp_logo_color.png"
+			}
 			posts << post
 		end
 		posts

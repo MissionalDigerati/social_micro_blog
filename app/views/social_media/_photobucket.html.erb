@@ -1,7 +1,7 @@
 <div class="post-box resizable-video">
 <div class="powered-by-box"><%= image_tag "photobucket/logo.png" %> Powered by Photobucket</div>
 	<div class="profile-box">
-		<%= link_to image_tag("#{@accounts['PB'+post.account]['avatar_url']}", class: 'profile-img'), "http://s1340.beta.photobucket.com/user/#{post.account}/profile/", target: "_blank" %>
+		<%= avatar(post, "http://s1340.beta.photobucket.com/user/#{post.account}/profile/") %>
 		<div class="details">
 			<%= link_to "#{@accounts['PB'+post.account]['name']}", "http://s1340.beta.photobucket.com/user/#{post.account}/profile/", target: "_blank", class: 'profile-name' %><br>
 			<%= link_to "#{post.account}", "http://s1340.beta.photobucket.com/user/#{post.account}/profile/", target: "_blank" %>

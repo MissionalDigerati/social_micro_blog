@@ -35,13 +35,18 @@ class TwitterService
 	def latest(account, max)
 		tweets = Array.new
 		access_token = get_access_token
-		response = access_token.request(:get, "http://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=#{account}&count=#{max}")
+		response = access_token.request(:get, "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=#{account}&count=#{max}")
 		results = JSON.parse(response.body)
 		results.each do |tweet|
 			new_tweet = {}
 			new_tweet['id'] = tweet['id']
 			new_tweet['content'] = pp(tweet)
 			new_tweet['created'] = tweet['created_at']
+			if tweet['user'].has_key?('profile_image_url')
+				new_tweet['avatar'] = tweet['user']['profile_image_url']
+			else
+				new_tweet['avatar'] = ''
+			end
 			tweets << new_tweet
 		end
 		tweets

@@ -23,9 +23,9 @@ require 'spec_helper'
 describe PhotobucketService do
 
 	before(:each) do
-		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', '..', 'config','services.yml')))['services']['photobucket']
+		@credentials = YAML::load(File.open(File.join(File.dirname(__FILE__), '..', 'config','services.yml')))['services']['photobucket']
 		@photobucket = PhotobucketService.new
-		@social_media = SocialMediaService.new(@twitter, @credentials)
+		@social_media = SocialMediaService.new(@photobucket, @credentials)
 		@photobucket.setup(@social_media)
 	end
 	

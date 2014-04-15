@@ -42,6 +42,19 @@ class TwitterhashService
 			new_tweet['id'] = tweet['id']
 			new_tweet['content'] = pp(tweet)
 			new_tweet['created'] = tweet['created_at']
+			if tweet['user'].has_key?('profile_image_url')
+				new_tweet['avatar'] = tweet['user']['profile_image_url']
+			else
+				new_tweet['avatar'] = ''
+			end
+			if tweet['user'].has_key?('screen_name')
+				new_tweet['account'] = tweet['user']['screen_name']
+			else
+				new_tweet['account'] = account
+				# Overwrite avatar so we do not get the wrong users avatar.  Hashtags do not have avatars
+				#
+				new_tweet['avatar'] = ''
+			end
 			tweets << new_tweet
 		end
 		tweets
