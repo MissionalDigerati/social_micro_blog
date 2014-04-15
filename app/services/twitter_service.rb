@@ -39,7 +39,7 @@ class TwitterService
 		results = JSON.parse(response.body)
 		results.each do |tweet|
 			new_tweet = {}
-			new_tweet['id'] = tweet['id']
+			new_tweet['id'] = tweet['id'].to_s
 			new_tweet['content'] = pp(tweet)
 			new_tweet['created'] = tweet['created_at']
 			if tweet['user'].has_key?('profile_image_url')

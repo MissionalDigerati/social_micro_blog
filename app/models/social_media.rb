@@ -4,7 +4,7 @@ class SocialMedia < ActiveRecord::Base
 	#checks if the post exists
 	#
 	def post_exists?
-		SocialMedia.where("social_media.provider = ? and social_media.provider_id = ?", self.provider, self.provider_id).present?
+		SocialMedia.where("social_media.provider = ? and social_media.provider_id = ?", self.provider, self.provider_id.to_s).present?
 	end
 	
 	def creation_date
